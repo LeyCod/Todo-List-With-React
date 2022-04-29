@@ -7,9 +7,6 @@ import List from "./List.jsx";
 const TodoList = () => {
 	const [listTodo, setListTodo] = useState([]);
 	const [newTodo, setNewTodo] = useState("");
-	const [urgentTask, setUrgentTask] = useState([]);
-	const [importantTask, setImportantTask] = useState([]);
-	const [normalTask, setnormalTask] = useState([]);
 
 	//Handel events
 
@@ -29,11 +26,12 @@ const TodoList = () => {
 
 	//Delete Task
 
-	const deleteTask = (IndexToDelete) => {
-		const newListTodo = [...listTodo, newTodo];
-		setListTodo(
-			newListTodo.filter((todo, index) => index !== IndexToDelete)
-		);
+	const deleteTask = (id) => {
+		console.log(listTodo);
+
+		const removeTask = listTodo.filter((todo, index) => index != id);
+		setListTodo(removeTask);
+		console.info(removeTask);
 	};
 
 	return (
@@ -55,57 +53,24 @@ const TodoList = () => {
 							onChange={(e) => setNewTodo(e.target.value)}
 							onKeyPress={handelKeyEnter}
 						/>
-						<select
-							className={
-								props.todo.priority == "normal"
-									? "form-select w-25 m-2 bg-success"
-									: props.todo.priority == "importante"
-									? "form-select w-25 m-2 bg-warning"
-									: "form-select w-25 m-2 bg-danger"
-							}
-							aria-label="Priority"
-							value={props.todo.priority}
-							onChange={(e) => {
-								let oldPriority = props.todo.priority;
-								props.todo.priority = e.target.value;
-
-								props.modifyPriority(
-									props.todo.todo,
-									oldPriority,
-									props.todo.priority,
-									props.id
-								);
-							}}>
-							<option>Select priority</option>
-							<option value="normal" className="bg-success">
-								Normal
-							</option>
-							<option value="urgente" className="bg-danger">
-								Urgente
-							</option>
-							<option value="importante" className="bg-warning">
-								Importante
-							</option>
-						</select>
 						<button
-							className="d-none d-md-block input-group-text btn btn-primary text-wrap"
-							id="basic-addon2"
+							className="btn btn-primary"
 							onClick={handelClick}>
-							Add New Task
+							ADD
 						</button>
+						{listTodo.map((todo, index) => (
+							<List
+								key={index}
+								id={index}
+								todo={todo}
+								deleteTask={deleteTask}
+							/>
+						))}
 					</div>
 				</div>
-				{listTodo.map((todo, index) => (
-					<List key={index} todo={todo} deleteTask={deleteTask} />
-				))}
 			</div>
 		</div>
 	);
 };
 
 export default TodoList;
-
-/**
- * @todo
- * delete todo
- */
