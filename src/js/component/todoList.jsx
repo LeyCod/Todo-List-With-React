@@ -42,6 +42,7 @@ const TodoList = () => {
 						<h1 className="input-group justify-content-center">
 							Todo List
 						</h1>
+						<div className="input-group mb-3">
 						<input
 							type="text"
 							className="form-control"
@@ -54,10 +55,11 @@ const TodoList = () => {
 							onKeyPress={handelKeyEnter}
 						/>
 						<button
-							className="btn btn-primary"
+							className="btn btn-primary" type="button" 
 							onClick={handelClick}>
 							ADD
 						</button>
+						</div>
 						{listTodo.map((todo, index) => (
 							<List
 								key={index}

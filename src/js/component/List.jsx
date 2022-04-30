@@ -5,7 +5,7 @@ const List = (props) => {
 	return (
 		<div className="container-fluid g-0 px-3">
 			<div className="row justify-content-center">
-				<div className="mt-2 p-1">
+				<div className="col-md-4 border border-primary p-3 rounded shadow">
 					<div className="d-flex flex-row justify-content-between align-items-center">
 						{props.todo}
 						<span
