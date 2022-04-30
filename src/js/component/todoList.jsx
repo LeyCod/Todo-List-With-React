@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 //components
 import List from "./List.jsx";
-//Styles
 
 const TodoList = () => {
 	const [listTodo, setListTodo] = useState([]);
@@ -43,22 +42,23 @@ const TodoList = () => {
 							Todo List
 						</h1>
 						<div className="input-group mb-3">
-						<input
-							type="text"
-							className="form-control"
-							id="new-task"
-							placeholder="Add New Todo"
-							aria-label="Add New Todo"
-							aria-describedby="basic-addon2"
-							value={newTodo}
-							onChange={(e) => setNewTodo(e.target.value)}
-							onKeyPress={handelKeyEnter}
-						/>
-						<button
-							className="btn btn-primary" type="button" 
-							onClick={handelClick}>
-							ADD
-						</button>
+							<input
+								type="text"
+								className="form-control"
+								id="new-task"
+								placeholder="Add New Todo"
+								aria-label="Add New Todo"
+								aria-describedby="basic-addon2"
+								value={newTodo}
+								onChange={(e) => setNewTodo(e.target.value)}
+								onKeyPress={handelKeyEnter}
+							/>
+							<button
+								className="btn btn-primary"
+								type="button"
+								onClick={handelClick}>
+								ADD
+							</button>
 						</div>
 						{listTodo.map((todo, index) => (
 							<List
